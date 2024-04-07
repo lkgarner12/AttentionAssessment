@@ -15,7 +15,7 @@ screen_height = user32.GetSystemMetrics(1)
 
 input_name = "input.mp4"
 output_name = "output.mp4"
-data_output_name = "data_output.xlsx"
+data_output_name = f'./output/data_output.xlsx'
 distraction_vid_name = "AttentionAssessment.mp4"
 
 video_path = f'./input/{input_name}'
@@ -115,7 +115,7 @@ while True:
     init_delta_time  = time.time() - start_time
     fps_delta_time = init_delta_time
 
-    if init_delta_time <= 120:
+    if init_delta_time <= phase_one_length:
         contrast = 1.25
         brightness = 75
 
@@ -190,6 +190,7 @@ while True:
         df = pd.DataFrame(values)
         df.to_excel(data_output_name)
         break
+
 
 
         
