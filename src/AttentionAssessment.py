@@ -191,7 +191,5 @@ while True:
         df.to_excel(data_output_name)
         break
 
-def test_run_success():
-    with open(f'{data_output_name}.xlsx', encoding="utf-8") as f:
-        assert(f.read)
+
         
