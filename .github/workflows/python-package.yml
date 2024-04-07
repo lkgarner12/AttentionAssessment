@@ -27,7 +27,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install flake8 pytest numpy pandas pytesseract time ctypes sys
+        python -m pip install flake8 pytest numpy pandas pytesseract ctypes sys
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
