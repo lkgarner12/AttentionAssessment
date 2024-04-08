@@ -23,6 +23,8 @@ distraction_vid_path = f'./input/{distraction_vid_name}'
 detected_letter = ""
 started = False
 
+phase_one_length = 120 # length of phase one in seconds
+
 contrast, brightness = [0, 0]
 fps = 50
 min_fps = 50
@@ -115,11 +117,14 @@ while True:
     init_delta_time  = time.time() - start_time
     fps_delta_time = init_delta_time
 
+    # Keeps brightness at 75% while still at Phase 1
     if init_delta_time <= phase_one_length:
         contrast = 1.25
         brightness = 75
 
     else:
+    # Phase 2
+        # Adjusts brightness and framerate of black frames
         if cv2.waitKey(10) == ord('b'):
             # decrease brightness
             brightness = brightness - 0.1 if brightness > 0 else brightness
@@ -134,6 +139,8 @@ while True:
             fps = fps + 0.1 if fps < max_fps else fps
 
         else:
+            '''Introduces the distraction task when distraction_start seconds 
+            has elapsed since the beginning of the experiment '''
             if (started) and (init_delta_time >= distraction_start and init_delta_time <= distraction_end):
                 d_flag, d_frame = distraction_cap.read()
                 if d_flag:
